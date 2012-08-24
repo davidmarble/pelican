@@ -186,7 +186,7 @@ the content. The ``pelican`` command can also be run directly::
 
     $ pelican /path/to/your/content/ [-s path/to/your/settings.py]
 
-The above command will generate your weblog and save it in the ``content/``
+The above command will generate your weblog and save it in the ``output/``
 folder, using the default theme to produce a simple site. The default theme is
 simple HTML without styling and is provided so folks may use it as a basis for
 creating their own themes.
@@ -277,13 +277,13 @@ For RestructuredText::
 
        your code goes here
 
-For Markdown, format your code blocks thusly::
+For Markdown, include the language identifier just above indented code blocks::
 
-    :::identifier
-    your code goes here
+        :::identifier
+        your code goes here
 
-The specified identifier should be one that appears on the 
-`list of available lexers <http://pygments.org/docs/lexers/>`_.
+The specified identifier (e.g. ``python``, ``ruby``) should be one that 
+appears on the `list of available lexers <http://pygments.org/docs/lexers/>`_.
 
 Publishing drafts
 -----------------
