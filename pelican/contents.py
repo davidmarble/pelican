@@ -159,6 +159,12 @@ class Content(object):
         key = key if self.in_default_lang else 'lang_%s' % key
         return self._expand_settings(key)
 
+    def get_file_setting(self, key):
+        if hasattr(self, 'override_' + key):
+            return getattr(self, 'override_' + key).lstrip('/\\')
+        key = key if self.in_default_lang else 'lang_%s' % key
+        return self._expand_settings(key).lstrip('/\\')
+
     def _update_content(self, content, siteurl):
         """Update the content attribute.
 
@@ -243,7 +249,7 @@ class Content(object):
     summary = property(_get_summary, _set_summary, "Summary of the article."
                        "Based on the content. Can't be set")
     url = property(functools.partial(get_url_setting, key='url'))
-    save_as = property(functools.partial(get_url_setting, key='save_as'))
+    save_as = property(functools.partial(get_file_setting, key='save_as'))
 
     def _get_template(self):
         if hasattr(self, 'template') and self.template is not None:
